@@ -41,17 +41,34 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, AnyView {
         searchBar = SearchField()
         
         super.init(node: node)
-        node.backgroundColor = .yellow
+        node.backgroundColor = .white
         self.node.automaticallyManagesSubnodes = true
         self.node.layoutSpecBlock = {_,_ in
-            let collection = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16), child: self.coctailsNode)
-            let stac = ASStackLayoutSpec(direction: .vertical,
-                                         spacing: 23,
-                                         justifyContent: .start,
-                                         alignItems: .start,
-                                         children: [collection, self.searchBar])
+            self.searchBar.style.preferredSize = CGSize(width: self.view.frame.width, height: 28)
+            
+            let collection = ASInsetLayoutSpec(
+                insets: UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16),
+                child: self.coctailsNode)
+            
+            let perfectSpacing = (self.view.frame.height -
+                                  self.view.safeAreaInsets.bottom -
+                                  self.view.safeAreaInsets.top -
+                                  250) * 196 / 367
+            
+            let stac = ASStackLayoutSpec(
+                direction: .vertical,
+                spacing: perfectSpacing,
+                justifyContent: .start,
+                alignItems: .center,
+                children: [collection, self.searchBar]
+            )
             return stac
         }
+    }
+    override func viewDidLoad() {
+        searchBar.textField.delegate = self
+        coctailsNode.delegate = self
+        coctailsNode.dataSource = self
     }
     
     private func fetchData(searchString: String) {
@@ -60,10 +77,6 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, AnyView {
             self.coctailsNode.coctails = coctails
             self.coctailsNode.reloadData()
         }
-    }
-    
-    override func viewDidLoad() {
-        searchBar.textField.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -75,51 +88,38 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, AnyView {
     }
 }
 
-class SearchField: ASDisplayNode {
-    var searchTimer: Timer?
-    let textField: ASEditableTextNode
-    let background: ASDisplayNode
-    
-    override init() {
-        textField = ASEditableTextNode()
-        textField.attributedText = NSMutableAttributedString(string: "KLR:GJ:OIDFJG:LKDFJGL")
-    
-        background = ASDisplayNode()
-        background.style.preferredSize = CGSize(width: 200, height: 28)
-        background.backgroundColor = .gray
-        
-        super.init()
-        self.automaticallyManagesSubnodes = true
-    }
-    
-    override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let paddingTextField = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16), child: textField)
-        let mainStack = ASOverlayLayoutSpec(child: background, overlay: paddingTextField)
-        
-        
-        
-        return mainStack
-    }
-    
-}
 extension CoctailViewController: ASEditableTextNodeDelegate {
+    
     func editableTextNodeDidUpdateText(_ editableTextNode: ASEditableTextNode){
         
         if searchTimer != nil {
             searchTimer?.invalidate()
             searchTimer = nil
         }
-        
         searchTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(searchText), userInfo: searchBar.textField.attributedText?.string, repeats: false)
-        
     }
     
     @objc func searchText() {
         let text = searchBar.textField.attributedText
         guard let text = text?.string else { return }
         fetchData(searchString: text)
+    }
+}
+
+extension CoctailViewController: ASCollectionDataSource, ASCollectionDelegate {
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+        print(coctails.count)
+        return coctails.count
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
+        guard coctails.count > indexPath.row else { return ASCellNode() }
+        let coctail = coctails[indexPath.row]
         
-         
+        let cell =  CoctailCell(coctail: coctail)
+        cell.cornerRadius = 8
+        return cell
     }
 }
 

@@ -19,17 +19,17 @@ class CoctailCell: ASCellNode {
         text.addAttribute(.foregroundColor, value: UIColor.white,
                           range: NSRange(0...text.length - 1))
         text.addAttribute(.font,
-                          value: UIFont.systemFont(ofSize: 12, weight: .bold),
+                          value: UIFont.systemFont(ofSize: 15, weight: .bold),
                           range: NSRange(0...text.length - 1))
         titleNode.attributedText = text
-        titleNode.backgroundColor = .gray
-        titleNode.textContainerInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
-        titleNode.cornerRadius = 8
+        titleNode.backgroundColor = #colorLiteral(red: 0.8110429645, green: 0.8110429049, blue: 0.8110428452, alpha: 1)
+        titleNode.textContainerInset = UIEdgeInsets(top: 4, left: 16,
+                                                    bottom: 4, right: 16)
         super.init()
         self.automaticallyManagesSubnodes = true
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), child: titleNode)
+        ASWrapperLayoutSpec(layoutElement: titleNode)
     }
 }
