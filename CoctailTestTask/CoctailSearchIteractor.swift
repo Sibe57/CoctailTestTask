@@ -10,7 +10,7 @@ import Foundation
 protocol AnyInteractor {
     var presenter: AnyPresenter? { get set }
     
-    func getCoctails()
+    func getCoctails(relevantTo search: String) -> [Coctail]?
 }
 
 class CoctailSearchIteractor: AnyInteractor {

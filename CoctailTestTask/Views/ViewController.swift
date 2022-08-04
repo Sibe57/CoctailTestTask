@@ -10,20 +10,20 @@ import AsyncDisplayKit
 protocol AnyView {
     var presenter: AnyPresenter? { get set }
     
-    func update(with users: [Coctail])
+    func update(with coctails: [Coctail])
     func update(with error: String)
 }
 
 
 class CoctailViewController: ASDKViewController<ASDisplayNode>, AnyView {
-    private var searchTimer: Timer?
+    var searchTimer: Timer?
     
-    func update(with users: [Coctail]) {
+    func update(with coctails: [Coctail]) {
         
     }
     
     func update(with error: String) {
-        
+        print("error occured")
     }
     
     var presenter: AnyPresenter?

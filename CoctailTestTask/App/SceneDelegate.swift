@@ -16,11 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = CoctailViewController()
-        window.makeKeyAndVisible()
-        self.window = window
+        let router = CoctailRouter.start()
+        let initialVC = router.entry
         
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = initialVC
+        self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

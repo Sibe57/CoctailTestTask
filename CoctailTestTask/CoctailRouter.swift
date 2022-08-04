@@ -5,17 +5,35 @@
 //  Created by Федор Еронин on 04.08.2022.
 //
 
-import Foundation
+import AsyncDisplayKit
 
+typealias EntryPoint = AnyView & ASDKViewController<ASDisplayNode>
 
 protocol AnyRouter {
+    var entry: EntryPoint? { get }
     static func start() -> AnyRouter
 }
 
 class CoctailRouter: AnyRouter {
+    var entry: EntryPoint?
+    
     static func start() -> AnyRouter {
         let router = CoctailRouter()
+        
+        var view: AnyView = CoctailViewController()
+        var presenter: AnyPresenter = CoctailSearchPresenter()
+        var iteractor: AnyInteractor = CoctailSearchIteractor()
+        
+        view.presenter = presenter
+        iteractor.presenter = presenter
+        presenter.router = router
+        presenter.view = view
+        presenter.interactor = iteractor
+        router.entry = view as? EntryPoint
+        
+        
         return router
+        
     }
 }
 
