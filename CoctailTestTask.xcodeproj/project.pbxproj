@@ -11,7 +11,6 @@
 		02592070289A7D85006B15DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0259206F289A7D85006B15DF /* SceneDelegate.swift */; };
 		02592072289A7D85006B15DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02592071289A7D85006B15DF /* ViewController.swift */; };
 		02592077289A7D86006B15DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02592076289A7D86006B15DF /* Assets.xcassets */; };
-		0259207A289A7D86006B15DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02592078289A7D86006B15DF /* LaunchScreen.storyboard */; };
 		026887B8289B146D0081EF5C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887B7289B146D0081EF5C /* NetworkManager.swift */; };
 		026887BA289BC5970081EF5C /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887B9289BC5970081EF5C /* Entity.swift */; };
 		026887BC289BC6FC0081EF5C /* CoctailSearchIteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887BB289BC6FC0081EF5C /* CoctailSearchIteractor.swift */; };
@@ -29,7 +28,6 @@
 		0259206F289A7D85006B15DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		02592071289A7D85006B15DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		02592076289A7D86006B15DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		02592079289A7D86006B15DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0259207B289A7D86006B15DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		026887B7289B146D0081EF5C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		026887B9289BC5970081EF5C /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -77,17 +75,14 @@
 		0259206C289A7D85006B15DF /* CoctailTestTask */ = {
 			isa = PBXGroup;
 			children = (
-				0259206D289A7D85006B15DF /* AppDelegate.swift */,
-				0259206F289A7D85006B15DF /* SceneDelegate.swift */,
-				026887B7289B146D0081EF5C /* NetworkManager.swift */,
 				026887C0289BCC3F0081EF5C /* CoctailRouter.swift */,
 				026887B9289BC5970081EF5C /* Entity.swift */,
-				026887BD289BC90B0081EF5C /* CoctailSearchPresenter.swift */,
-				026887C2289BF7860081EF5C /* Views */,
 				026887BB289BC6FC0081EF5C /* CoctailSearchIteractor.swift */,
-				02592076289A7D86006B15DF /* Assets.xcassets */,
-				02592078289A7D86006B15DF /* LaunchScreen.storyboard */,
-				0259207B289A7D86006B15DF /* Info.plist */,
+				026887BD289BC90B0081EF5C /* CoctailSearchPresenter.swift */,
+				026887CB289C31640081EF5C /* App */,
+				026887C9289C310D0081EF5C /* Services */,
+				026887C2289BF7860081EF5C /* Views */,
+				026887CA289C31210081EF5C /* Resourses */,
 			);
 			path = CoctailTestTask;
 			sourceTree = "<group>";
@@ -101,6 +96,32 @@
 				026887C5289BF7AC0081EF5C /* CoctailCollection.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		026887C9289C310D0081EF5C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				026887B7289B146D0081EF5C /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		026887CA289C31210081EF5C /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				02592076289A7D86006B15DF /* Assets.xcassets */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		026887CB289C31640081EF5C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0259206F289A7D85006B15DF /* SceneDelegate.swift */,
+				0259206D289A7D85006B15DF /* AppDelegate.swift */,
+				0259207B289A7D86006B15DF /* Info.plist */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		A206CCF1D9815D3E6A46EEDA /* Pods */ = {
@@ -180,7 +201,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0259207A289A7D86006B15DF /* LaunchScreen.storyboard in Resources */,
 				02592077289A7D86006B15DF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,17 +269,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		02592078289A7D86006B15DF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				02592079289A7D86006B15DF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0259207C289A7D86006B15DF /* Debug */ = {
@@ -386,7 +395,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R82749YG66;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoctailTestTask/Info.plist;
+				INFOPLIST_FILE = CoctailTestTask/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -416,7 +425,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R82749YG66;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CoctailTestTask/Info.plist;
+				INFOPLIST_FILE = CoctailTestTask/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

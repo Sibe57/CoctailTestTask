@@ -16,7 +16,7 @@ protocol AnyView {
 
 
 class CoctailViewController: ASDKViewController<ASDisplayNode>, AnyView {
-    var searchTimer: Timer?
+    private var searchTimer: Timer?
     
     func update(with users: [Coctail]) {
         
@@ -30,14 +30,14 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, AnyView {
     
     var titleNode = ASTextNode()
     
-    let coctails: [Coctail] = []
+    private var coctails: [Coctail] = []
     
     private let searchBar: SearchField
     private let coctailsNode: CoctailCollectionNode
     
     override init() {
         let node = ASDisplayNode()
-        self.coctailsNode = CoctailCollectionNode(coctails: coctails)
+        self.coctailsNode = CoctailCollectionNode()
         searchBar = SearchField()
         
         super.init(node: node)
@@ -74,7 +74,7 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, AnyView {
     private func fetchData(searchString: String) {
         NetwotkManager.fetchData(searchString: searchString) {
             guard let coctails = $0 else { return }
-            self.coctailsNode.coctails = coctails
+            self.coctails = coctails
             self.coctailsNode.reloadData()
         }
     }

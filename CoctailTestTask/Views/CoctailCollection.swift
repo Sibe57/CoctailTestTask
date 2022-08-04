@@ -8,12 +8,8 @@
 import AsyncDisplayKit
 
 class CoctailCollectionNode: ASCollectionNode {
-    var coctails: [Coctail]
     
-    init(coctails: [Coctail]) {
-        
-        self.coctails = coctails
-        
+    init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 8
