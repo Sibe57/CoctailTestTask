@@ -12,16 +12,15 @@ class CoctailCollectionNode: ASCollectionNode {
     init() {
         let layout = LeftAlignedCollectionViewFlowLayout()
         layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 8
-
+        layout.minimumInteritemSpacing = 10
+        
         super.init(frame: .zero, collectionViewLayout: layout, layoutFacilitator: nil)
         
         self.style.width = ASDimension(unit: .fraction, value: 1)
-        self.style.height = ASDimension(unit: .points, value: 250)
+        self.style.height = ASDimension(unit: .points, value: 264)
         self.view.showsVerticalScrollIndicator = false
     }
 }
-
 
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
@@ -40,7 +39,6 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
             leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
             maxY = max(layoutAttribute.frame.maxY , maxY)
         }
-
         return attributes
     }
 }

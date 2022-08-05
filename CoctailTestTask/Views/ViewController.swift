@@ -40,7 +40,7 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
             let perfectSpacing = (self.view.frame.height -
                                   self.view.safeAreaInsets.bottom -
                                   self.view.safeAreaInsets.top -
-                                  250) * 200 / 327
+                                  264) * 186 / 313
             print(self.view.safeAreaInsets.bottom)
             
             let stack = ASStackLayoutSpec(
@@ -107,7 +107,13 @@ extension CoctailViewController: ASCollectionDataSource, ASCollectionDelegate {
         let coctail = coctails[indexPath.row]
         let detailVC = DetailViewController()
         detailVC.coctail = coctail
+        detailVC.modalPresentationStyle = .overCurrentContext
+        detailVC.modalTransitionStyle = .coverVertical
         present(detailVC, animated: true)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        view.addSubview(blurEffectView)
     }
 }
 
