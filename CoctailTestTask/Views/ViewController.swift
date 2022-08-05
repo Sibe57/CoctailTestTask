@@ -110,10 +110,7 @@ extension CoctailViewController: ASCollectionDataSource, ASCollectionDelegate {
         detailVC.modalPresentationStyle = .overCurrentContext
         detailVC.modalTransitionStyle = .coverVertical
         present(detailVC, animated: true)
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        view.addSubview(blurEffectView)
+        
     }
 }
 

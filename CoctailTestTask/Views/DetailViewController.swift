@@ -25,7 +25,7 @@ class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
         image = ASNetworkImageNode()
         super.init(node: ASDisplayNode())
         node.backgroundColor = .clear
-        image.backgroundColor = .white
+        image.backgroundColor = #colorLiteral(red: 0.8110429645, green: 0.8110429049, blue: 0.8110428452, alpha: 1)
         image.style.preferredSize = CGSize(width: node.frame.width, height: node.frame.height / 2)
         image.cornerRadius = 20
         
@@ -47,10 +47,6 @@ class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
         let text = NSMutableAttributedString(string: coctail.strDrink)
         text.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .semibold), range: NSRange(0..<text.length))
         titleNode.attributedText = text
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
         
     }
     
