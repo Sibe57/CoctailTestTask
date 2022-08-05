@@ -11,44 +11,71 @@ protocol SearchView {
     var presenter: AnyPresenter? { get set }
     func update(with coctails: [Coctail])
     func update(with error: String)
+    func changeAtrivitiIndicatorState(toStartAnimating: Bool)
 }
 
 class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
     
     var presenter: AnyPresenter?
-    
     private var coctails: [Coctail] = []
     private let searchBar: SearchField
     private let coctailsNode: CoctailCollectionNode
+    private let activityIndicatorNode: ASDisplayNode
+    let activityIndicator: UIActivityIndicatorView
+    
+    lazy var blurredView: UIView = {
+            let containerView = UIView()
+            let blurEffect = UIBlurEffect(style: .light)
+            let customBlurEffectView = CustomVisualEffectView(effect: blurEffect, intensity: 0.08)
+            customBlurEffectView.frame = self.view.bounds
+            return customBlurEffectView
+        }()
     
     override init() {
         coctailsNode = CoctailCollectionNode()
         searchBar = SearchField()
-        
+        activityIndicatorNode = ASDisplayNode()
+        activityIndicatorNode.backgroundColor = .red
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicatorNode.view.addSubview(activityIndicator)
         super.init(node: ASDisplayNode())
         
         node.backgroundColor = .white
         self.node.automaticallyManagesSubnodes = true
         
-        self.node.layoutSpecBlock = {_,_ in
-            self.searchBar.style.preferredSize = CGSize(width: self.view.frame.width, height: 28)
+        self.node.layoutSpecBlock = {[unowned self] _,_ in
             
-            let collection = ASInsetLayoutSpec(
+            activityIndicatorNode.style.layoutPosition = CGPoint(
+                x: view.frame.midX - 10, y: 48
+            )
+            activityIndicatorNode.style.preferredSize = CGSize(
+                width: 0, height: 0
+            )
+            searchBar.style.preferredSize = CGSize(
+                width: view.frame.width, height: 28
+            )
+            
+            let indicatorPos = ASAbsoluteLayoutSpec(children: [activityIndicatorNode])
+            let coctailsCollectionPos = ASOverlayLayoutSpec(
+                child: coctailsNode,
+                overlay: indicatorPos
+            )
+        
+            let insets = ASInsetLayoutSpec(
                 insets: UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16),
-                child: self.coctailsNode)
+                child: coctailsCollectionPos)
             
-            let perfectSpacing = (self.view.frame.height -
-                                  self.view.safeAreaInsets.bottom -
-                                  self.view.safeAreaInsets.top -
+            let perfectSpacing = (view.frame.height -
+                                  view.safeAreaInsets.bottom -
+                                  view.safeAreaInsets.top -
                                   264) * 186 / 313
-            print(self.view.safeAreaInsets.bottom)
             
             let stack = ASStackLayoutSpec(
                 direction: .vertical,
                 spacing: perfectSpacing,
                 justifyContent: .start,
                 alignItems: .center,
-                children: [collection, self.searchBar]
+                children: [insets, searchBar]
             )
             return stack
         }
@@ -59,25 +86,32 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         searchBar.textField.delegate = self
         coctailsNode.delegate = self
         coctailsNode.dataSource = self
-        
     }
-
+ 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.searchBar.textField.resignFirstResponder()
+        searchBar.textField.resignFirstResponder()
     }
     
     func update(with coctails: [Coctail]) {
         self.coctails = coctails
         coctailsNode.reloadData()
         coctailsNode.isHidden = false
+        activityIndicator.stopAnimating()
     }
     
     func update(with error: String) {
         print(error)
         coctailsNode.isHidden = true
+    }
+    
+    func changeAtrivitiIndicatorState(toStartAnimating: Bool) {
+        toStartAnimating
+        ? activityIndicator.startAnimating()
+        : activityIndicator.stopAnimating()
     }
 }
 
@@ -104,9 +138,10 @@ extension CoctailViewController: ASCollectionDataSource, ASCollectionDelegate {
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        let coctail = coctails[indexPath.row]
+        presenter?.cellDidTapped(with: coctails[indexPath.row])
+        searchBar.textField.resignFirstResponder()
         let detailVC = DetailViewController()
-        detailVC.coctail = coctail
+        detailVC.coctail = coctails[indexPath.row]
         detailVC.modalPresentationStyle = .overCurrentContext
         detailVC.modalTransitionStyle = .coverVertical
         present(detailVC, animated: true)

@@ -9,15 +9,18 @@ import AsyncDisplayKit
 
 typealias EntryPoint = SearchView & ASDKViewController<ASDisplayNode>
 
-protocol AnyRouter {
+protocol SearchRouter {
     var entry: EntryPoint? { get }
-    static func start() -> AnyRouter
+    static func start() -> SearchRouter
+    func toDetailScreen(about coctail: Coctail )
 }
 
-class CoctailRouter: AnyRouter {
+class CoctailRouter: SearchRouter {
+
+    
     var entry: EntryPoint?
     
-    static func start() -> AnyRouter {
+    static func start() -> SearchRouter {
         let router = CoctailRouter()
         
         var view: SearchView = CoctailViewController()
@@ -31,9 +34,16 @@ class CoctailRouter: AnyRouter {
         presenter.interactor = iteractor
         router.entry = view as? EntryPoint
         
-        
         return router
         
+    }
+    
+    func toDetailScreen(about coctail: Coctail) {
+        let detailVC = DetailViewController()
+        detailVC.coctail = coctail
+        detailVC.modalPresentationStyle = .overCurrentContext
+        detailVC.modalTransitionStyle = .coverVertical
+        print(coctail)
     }
 }
 

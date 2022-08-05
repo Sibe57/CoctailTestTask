@@ -13,10 +13,11 @@ protocol DetailView {
 
 class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
     
-    let image: ASNetworkImageNode
-    let titleNode: ASTextNode
-//    let titleBackground: ASDisplayNode
     var coctail: Coctail!
+    
+    private let image: ASNetworkImageNode
+    private let titleNode: ASTextNode
+    
     
     override init() {
         titleNode = ASTextNode()
@@ -44,10 +45,13 @@ class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
         let url = coctail.strDrinkThumb.replacingOccurrences(of: "\\", with: "")
         print("iloveURL" + url)
         image.url = URL(string: url)
+        setTextLabel()
+    }
+    
+    private func setTextLabel() {
         let text = NSMutableAttributedString(string: coctail.strDrink)
         text.addAttribute(.font, value: UIFont.systemFont(ofSize: 16, weight: .semibold), range: NSRange(0..<text.length))
         titleNode.attributedText = text
-        
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +59,6 @@ class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
 }

@@ -8,16 +8,17 @@
 import Foundation
 
 protocol AnyPresenter {
-    var router: AnyRouter? {get set}
+    var router: SearchRouter? {get set}
     var interactor: AnyInteractor? { get set }
     var view: SearchView? { get set }
     func textFieldDidChange(text: String?)
     func interactorDoneWithCoctails(coctails: [Coctail]?)
+    func cellDidTapped(with coctail: Coctail)
 }
 
 class CoctailSearchPresenter: AnyPresenter {
     
-    var router: AnyRouter?
+    var router: SearchRouter?
     var interactor: AnyInteractor?
     var view: SearchView?
     
@@ -41,6 +42,11 @@ class CoctailSearchPresenter: AnyPresenter {
     }
     @objc func searchText() {
         interactor?.getCoctails(searchString: searchString)
+        view?.changeAtrivitiIndicatorState(toStartAnimating: true)
+    }
+    
+    func cellDidTapped(with coctail: Coctail) {
+        router?.toDetailScreen(about: coctail)
     }
     
     func interactorDoneWithCoctails(coctails: [Coctail]?) {

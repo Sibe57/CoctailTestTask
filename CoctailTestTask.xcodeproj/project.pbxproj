@@ -20,6 +20,7 @@
 		026887C6289BF7AC0081EF5C /* CoctailCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887C5289BF7AC0081EF5C /* CoctailCollection.swift */; };
 		026887C8289C289E0081EF5C /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887C7289C289E0081EF5C /* SearchField.swift */; };
 		0281938B289C529C001205CF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281938A289C529C001205CF /* DetailViewController.swift */; };
+		0281938D289D33B0001205CF /* BlurVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281938C289D33B0001205CF /* BlurVisualEffectView.swift */; };
 		3BD6F73BC4199D0CBC112B27 /* Pods_CoctailTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559B15744138778A44AF40F0 /* Pods_CoctailTestTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		026887C5289BF7AC0081EF5C /* CoctailCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailCollection.swift; sourceTree = "<group>"; };
 		026887C7289C289E0081EF5C /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		0281938A289C529C001205CF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0281938C289D33B0001205CF /* BlurVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurVisualEffectView.swift; sourceTree = "<group>"; };
 		559B15744138778A44AF40F0 /* Pods_CoctailTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF8A962DC25B53C02D91A7B /* Pods-CoctailTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTestTask.debug.xcconfig"; path = "Target Support Files/Pods-CoctailTestTask/Pods-CoctailTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		AE4640D61E47F1E7D0139F8A /* Pods-CoctailTestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTestTask.release.xcconfig"; path = "Target Support Files/Pods-CoctailTestTask/Pods-CoctailTestTask.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				02592071289A7D85006B15DF /* ViewController.swift */,
+				0281938C289D33B0001205CF /* BlurVisualEffectView.swift */,
 				026887C7289C289E0081EF5C /* SearchField.swift */,
 				0281938A289C529C001205CF /* DetailViewController.swift */,
 				026887C3289BF79F0081EF5C /* CoctailCell.swift */,
@@ -266,6 +269,7 @@
 				02592072289A7D85006B15DF /* ViewController.swift in Sources */,
 				0259206E289A7D85006B15DF /* AppDelegate.swift in Sources */,
 				026887BE289BC90B0081EF5C /* CoctailSearchPresenter.swift in Sources */,
+				0281938D289D33B0001205CF /* BlurVisualEffectView.swift in Sources */,
 				026887C6289BF7AC0081EF5C /* CoctailCollection.swift in Sources */,
 				026887C1289BCC3F0081EF5C /* CoctailRouter.swift in Sources */,
 				02592070289A7D85006B15DF /* SceneDelegate.swift in Sources */,
