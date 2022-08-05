@@ -9,22 +9,16 @@ import Foundation
 
 protocol AnyInteractor {
     var presenter: AnyPresenter? { get set }
-    
-    func getCoctails(relevantTo search: String) -> [Coctail]?
+    func getCoctails(searchString: String)
 }
 
 class CoctailSearchIteractor: AnyInteractor {
     
     var presenter: AnyPresenter?
     
-    func getCoctails(relevantTo search: String) -> [Coctail]? {
-        var coctails: [Coctail]?
-        NetwotkManager.fetchData(searchString: search) {
-            coctails = $0
+    func getCoctails(searchString: String) {
+        NetwotkManager.fetchData(searchString: searchString) {
+            self.presenter?.interactorDoneWithCoctails(coctails: $0)
         }
-        return coctails
-    }
-    func getCoctails() {
-        
     }
 }

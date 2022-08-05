@@ -7,7 +7,7 @@
 
 import AsyncDisplayKit
 
-typealias EntryPoint = AnyView & ASDKViewController<ASDisplayNode>
+typealias EntryPoint = SearchView & ASDKViewController<ASDisplayNode>
 
 protocol AnyRouter {
     var entry: EntryPoint? { get }
@@ -20,7 +20,7 @@ class CoctailRouter: AnyRouter {
     static func start() -> AnyRouter {
         let router = CoctailRouter()
         
-        var view: AnyView = CoctailViewController()
+        var view: SearchView = CoctailViewController()
         var presenter: AnyPresenter = CoctailSearchPresenter()
         var iteractor: AnyInteractor = CoctailSearchIteractor()
         

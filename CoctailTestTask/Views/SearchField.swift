@@ -11,6 +11,11 @@ class SearchField: ASDisplayNode {
     
     let textField: ASEditableTextNode
     let background: ASDisplayNode
+//    let keyboardShowBG: ASDisplayNode
+    var initialFrame: CGRect?
+    
+    var keyboardIsShowing: Bool = false
+    var heightOfKeyboard: CGFloat = 0
     
     override init() {
         textField = ASEditableTextNode()
@@ -24,6 +29,7 @@ class SearchField: ASDisplayNode {
             range: NSRange(0..<placeholder.length)
         )
         textField.attributedPlaceholderText = placeholder
+        textField.backgroundColor = .red
     
         background = ASDisplayNode()
         background.backgroundColor = .white
@@ -35,6 +41,59 @@ class SearchField: ASDisplayNode {
     
     override func didLoad() {
         createShadow()
+        keyBoard()
+        setGestureRecognizer()
+    }
+    
+    private func setGestureRecognizer() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(backgroundDidTapped))
+        background.view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func backgroundDidTapped() {
+        textField.becomeFirstResponder()
+    }
+    
+    private func keyBoard() {
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    
+    override func animateLayoutTransition(_ context: ASContextTransitioning) {
+        background.cornerRadius = keyboardIsShowing ? 0 : 8
+        let scaleXfactor = 1 + (32 / (supernode!.frame.width - 32))
+        let transform = CGAffineTransform(scaleX: keyboardIsShowing ? scaleXfactor : 1, y: 1)
+        background.view.transform = transform
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        keyboardIsShowing = true
+        if initialFrame == nil {
+            initialFrame = self.view.frame
+        }
+        
+        guard let keyboardFrame: NSValue =
+                notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                as? NSValue else { return }
+        let keyboardHeight = keyboardFrame.cgRectValue.height
+        print(keyboardHeight)
+        view.frame.origin.y = supernode!.frame.maxY - keyboardHeight - view.frame.height
+        transitionLayout(withAnimation: true, shouldMeasureAsync: false)
+    }
+    
+    @objc func keyboardWillHide() {
+        keyboardIsShowing = false
+        guard let initialFrame = initialFrame else { return }
+        
+        view.frame = initialFrame
+        transitionLayout(withAnimation: true, shouldMeasureAsync: false)
     }
     
     private func setTextField() {
@@ -61,13 +120,11 @@ class SearchField: ASDisplayNode {
             insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16),
             child: textField
         )
-        
         let centerTextField = ASCenterLayoutSpec(
             centeringOptions: .XY,
             sizingOptions: .minimumXY,
             child: paddingTextField
         )
-        
         let mainStack = ASOverlayLayoutSpec(
             child: background, overlay: centerTextField
         )
