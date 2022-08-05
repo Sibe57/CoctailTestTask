@@ -31,7 +31,8 @@ class CoctailSearchPresenter: AnyPresenter {
             searchTimer = nil
         }
         guard let text = text else {
-            self.view?.update(with: "EmptyTextField")
+            view?.update(with: "EmptyTextField")
+            view?.changeAtrivitiIndicatorState(toStartAnimating: false)
             return
         }
         searchString = text.replacingOccurrences(of: " ", with: "")
@@ -54,6 +55,7 @@ class CoctailSearchPresenter: AnyPresenter {
             view?.update(with: coctails)
         } else {
             view?.update(with: "data fetching error")
+            view?.changeAtrivitiIndicatorState(toStartAnimating: false)
         }
     }
 }

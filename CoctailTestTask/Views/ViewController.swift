@@ -17,16 +17,20 @@ protocol SearchView {
 class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
     
     var presenter: AnyPresenter?
+    
     private var coctails: [Coctail] = []
+    
     private let searchBar: SearchField
     private let coctailsNode: CoctailCollectionNode
+    
     private let activityIndicatorNode: ASDisplayNode
-    let activityIndicator: UIActivityIndicatorView
+    private let activityIndicator: UIActivityIndicatorView
     
     lazy var blurredView: UIView = {
             let containerView = UIView()
             let blurEffect = UIBlurEffect(style: .light)
-            let customBlurEffectView = CustomVisualEffectView(effect: blurEffect, intensity: 0.08)
+            let customBlurEffectView = CustomVisualEffectView(effect: blurEffect,
+                                                              intensity: 0.08)
             customBlurEffectView.frame = self.view.bounds
             return customBlurEffectView
         }()

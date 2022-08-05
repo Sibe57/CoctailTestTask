@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CustomVisualEffectView: UIVisualEffectView {
+class CustomVisualEffectView: UIVisualEffectView {
     
     private let theEffect: UIVisualEffect
     private let customIntensity: CGFloat

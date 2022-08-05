@@ -10,12 +10,12 @@ import AsyncDisplayKit
 class SearchField: ASDisplayNode {
     
     let textField: ASEditableTextNode
-    let background: ASDisplayNode
+    private let background: ASDisplayNode
     
-    var initialFrame: CGRect?
+    private var initialFrame: CGRect?
     
-    var keyboardIsShowing: Bool = false
-    var heightOfKeyboard: CGFloat = 0
+    private var keyboardIsShowing: Bool = false
+    private var heightOfKeyboard: CGFloat = 0
     
     override init() {
         textField = ASEditableTextNode()
@@ -29,7 +29,6 @@ class SearchField: ASDisplayNode {
             range: NSRange(0..<placeholder.length)
         )
         textField.attributedPlaceholderText = placeholder
-    
         background = ASDisplayNode()
         background.backgroundColor = .white
         

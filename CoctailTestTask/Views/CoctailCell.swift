@@ -8,9 +8,9 @@
 import AsyncDisplayKit
 
 class CoctailCell: ASCellNode {
-    let coctail: Coctail
+    private let coctail: Coctail
     
-    let titleNode: ASTextNode
+    private let titleNode: ASTextNode
     
     init(coctail: Coctail) {
         self.coctail = coctail

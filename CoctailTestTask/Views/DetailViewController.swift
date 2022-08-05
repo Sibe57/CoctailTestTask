@@ -33,8 +33,7 @@ class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
         node.automaticallyManagesSubnodes = true
         self.node.layoutSpecBlock = {_, _ in
             self.image.style.preferredSize = CGSize(width: self.node.frame.width, height: self.node.frame.height / 2)
-            let spacing = -1 * self.titleNode.frame.height
-            print(spacing)
+            
             let stack = ASStackLayoutSpec(direction: .vertical, spacing: -36, justifyContent: .end, alignItems: .stretch, children: [self.image, self.titleNode])
         
             return stack
@@ -43,7 +42,6 @@ class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
     
     override func viewDidLoad() {
         let url = coctail.strDrinkThumb.replacingOccurrences(of: "\\", with: "")
-        print("iloveURL" + url)
         image.url = URL(string: url)
         setTextLabel()
     }
