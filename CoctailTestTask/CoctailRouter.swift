@@ -16,7 +16,6 @@ protocol SearchRouter {
 }
 
 class CoctailRouter: SearchRouter {
-
     
     var entry: EntryPoint?
     

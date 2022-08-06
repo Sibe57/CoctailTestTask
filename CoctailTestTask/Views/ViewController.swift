@@ -45,9 +45,9 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
         super.init(node: ASDisplayNode())
         
         node.backgroundColor = .white
-        self.node.automaticallyManagesSubnodes = true
+        node.automaticallyManagesSubnodes = true
         
-        self.node.layoutSpecBlock = {[unowned self] _,_ in
+        node.layoutSpecBlock = {[unowned self] _,_ in
             
             activityIndicatorNode.style.layoutPosition = CGPoint(
                 x: view.frame.midX - 10, y: 48

@@ -23,27 +23,37 @@ class DetailViewController: ASDKViewController<ASDisplayNode>, DetailView {
         titleNode = ASTextNode()
         titleNode.textContainerInset = UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 20)
         titleNode.backgroundColor = .white
+        
         image = ASNetworkImageNode()
-        super.init(node: ASDisplayNode())
-        node.backgroundColor = .clear
         image.backgroundColor = #colorLiteral(red: 0.8110429645, green: 0.8110429049, blue: 0.8110428452, alpha: 1)
-        image.style.preferredSize = CGSize(width: node.frame.width, height: node.frame.height / 2)
         image.cornerRadius = 20
         
-        node.automaticallyManagesSubnodes = true
-        self.node.layoutSpecBlock = {_, _ in
-            self.image.style.preferredSize = CGSize(width: self.node.frame.width, height: self.node.frame.height / 2)
-            
-            let stack = ASStackLayoutSpec(direction: .vertical, spacing: -36, justifyContent: .end, alignItems: .stretch, children: [self.image, self.titleNode])
+        super.init(node: ASDisplayNode())
         
+        node.automaticallyManagesSubnodes = true
+        
+        self.node.layoutSpecBlock = { [unowned self] _, _ in
+            
+            image.style.preferredSize = CGSize(width: node.frame.width,
+                                               height: node.frame.height / 2)
+            
+            let stack = ASStackLayoutSpec(
+                direction: .vertical, spacing: -36, justifyContent: .end,
+                alignItems: .stretch, children: [image, titleNode]
+            )
             return stack
         }
     }
     
     override func viewDidLoad() {
+        node.backgroundColor = .clear
+        setImageDownloading()
+        setTextLabel()
+    }
+    
+    private func setImageDownloading() {
         let url = coctail.strDrinkThumb.replacingOccurrences(of: "\\", with: "")
         image.url = URL(string: url)
-        setTextLabel()
     }
     
     private func setTextLabel() {

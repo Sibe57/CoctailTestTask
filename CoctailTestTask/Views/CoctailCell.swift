@@ -17,10 +17,10 @@ class CoctailCell: ASCellNode {
         titleNode = ASTextNode()
         let text = NSMutableAttributedString(string: coctail.strDrink)
         text.addAttribute(.foregroundColor, value: UIColor.white,
-                          range: NSRange(0...text.length - 1))
+                          range: NSRange(0..<text.length))
         text.addAttribute(.font,
                           value: UIFont.systemFont(ofSize: 15, weight: .bold),
-                          range: NSRange(0...text.length - 1))
+                          range: NSRange(0..<text.length))
         titleNode.attributedText = text
         titleNode.backgroundColor = #colorLiteral(red: 0.8110429645, green: 0.8110429049, blue: 0.8110428452, alpha: 1)
         titleNode.textContainerInset = UIEdgeInsets(top: 4, left: 16,
