@@ -12,8 +12,8 @@ protocol DetailPresenterProtocol {
     var router: SearchRouterProtocol? { get set }
     
     var coctailToPresent: Coctail? { get set }
-    func getCoctailName() -> String
-    func getCoctailImageURL() -> URL?
+    func getTitleName() -> String
+    func getImageURL() -> URL?
     func viewWillDissmis()
 }
 
@@ -26,12 +26,12 @@ final class DetailPresenter: DetailPresenterProtocol {
     
     init() {}
     
-    func getCoctailName() -> String {
+    func getTitleName() -> String {
         guard let coctailToPresent = coctailToPresent else { return "" }
         return coctailToPresent.strDrink
     }
     
-    func getCoctailImageURL() -> URL? {
+    func getImageURL() -> URL? {
         guard let coctailToPresent = coctailToPresent else { return nil }
 
         return URL(string: coctailToPresent.strDrinkThumb.replacingOccurrences(

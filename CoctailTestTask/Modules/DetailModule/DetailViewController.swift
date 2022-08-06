@@ -35,7 +35,7 @@ final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewP
     override func viewDidLoad() {
         setupApperance()
         setTextLabel()
-        imageNode.url = detailPresenter?.getCoctailImageURL()
+        imageNode.url = detailPresenter?.getImageURL()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -63,9 +63,13 @@ final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewP
     }
     
     private func setupApperance() {
-        let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets
-        titleNode.textContainerInset = UIEdgeInsets(top: 20, left: 16,
-                                                    bottom: 20 + (safeAreaInsets?.bottom ?? 0), right: 20)
+       let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets
+        
+        titleNode.textContainerInset = UIEdgeInsets(
+            top: 20, left: 16,
+            bottom: 20 + (safeAreaInsets?.bottom ?? 0) , right: 20
+        )
+        
         titleNode.backgroundColor = .white
         imageNode.backgroundColor = #colorLiteral(red: 0.8110429645, green: 0.8110429049, blue: 0.8110428452, alpha: 1)
         imageNode.cornerRadius = 20
@@ -75,7 +79,7 @@ final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewP
     private func setTextLabel() {
         guard let detailPresenter = detailPresenter else { return }
         let text = NSMutableAttributedString(
-            string: detailPresenter.getCoctailName()
+            string: detailPresenter.getTitleName()
         )
         text.addAttribute(
             .font, value: UIFont.systemFont(ofSize: 16, weight: .semibold),
