@@ -7,16 +7,18 @@
 
 import AsyncDisplayKit
 
-protocol SearchView {
-    var presenter: AnyPresenter? { get set }
+protocol SearchViewProtocol {
+    var presenter: SearchPresenterProtocol? { get set }
     func update(with coctails: [Coctail])
     func update(with error: String)
     func changeAtrivitiIndicatorState(toStartAnimating: Bool)
+    func selfBlur()
+    func selfUnblur()
 }
 
-class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
+final class SearchViewController: ASDKViewController<ASDisplayNode> {
     
-    var presenter: AnyPresenter?
+    var presenter: SearchPresenterProtocol?
     
     private var coctails: [Coctail] = []
     
@@ -39,15 +41,35 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
         coctailsNode = CoctailCollectionNode()
         searchBar = SearchField()
         activityIndicatorNode = ASDisplayNode()
-        activityIndicatorNode.backgroundColor = .red
         activityIndicator = UIActivityIndicatorView()
-        activityIndicatorNode.view.addSubview(activityIndicator)
+        
         super.init(node: ASDisplayNode())
         
-        node.backgroundColor = .white
         node.automaticallyManagesSubnodes = true
-        
+        setupLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchBar.textField.delegate = self
+        coctailsNode.delegate = self
+        coctailsNode.dataSource = self
+    }
+ 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.textField.resignFirstResponder()
+    }
+    
+    private func setupLayout() {
         node.layoutSpecBlock = {[unowned self] _,_ in
+            
+            activityIndicatorNode.backgroundColor = .red
+            activityIndicatorNode.view.addSubview(activityIndicator)
+            node.backgroundColor = .white
             
             activityIndicatorNode.style.layoutPosition = CGPoint(
                 x: view.frame.midX - 10, y: 48
@@ -74,42 +96,36 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
                                   view.safeAreaInsets.top -
                                   264) * 186 / 313
             
-            let stack = ASStackLayoutSpec(
+            return ASStackLayoutSpec(
                 direction: .vertical,
                 spacing: perfectSpacing,
                 justifyContent: .start,
                 alignItems: .center,
                 children: [insets, searchBar]
             )
-            return stack
         }
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        searchBar.textField.delegate = self
-        coctailsNode.delegate = self
-        coctailsNode.dataSource = self
-    }
- 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        searchBar.textField.resignFirstResponder()
-    }
+}
+
+extension SearchViewController: SearchViewProtocol {
     
     func update(with coctails: [Coctail]) {
         self.coctails = coctails
         coctailsNode.reloadData()
         coctailsNode.isHidden = false
-        activityIndicator.stopAnimating()
     }
     
     func update(with error: String) {
-        print(error)
         coctailsNode.isHidden = true
+        print(error)
+    }
+    
+    func selfBlur() {
+        view.addSubview(blurredView)
+    }
+    
+    func selfUnblur() {
+        blurredView.removeFromSuperview()
     }
     
     func changeAtrivitiIndicatorState(toStartAnimating: Bool) {
@@ -119,7 +135,7 @@ class CoctailViewController: ASDKViewController<ASDisplayNode>, SearchView {
     }
 }
 
-extension CoctailViewController: ASEditableTextNodeDelegate {
+extension SearchViewController: ASEditableTextNodeDelegate {
     func editableTextNodeDidUpdateText(_ editableTextNode: ASEditableTextNode){
         presenter?.textFieldDidChange(
             text: searchBar.textField.attributedText?.string
@@ -127,7 +143,7 @@ extension CoctailViewController: ASEditableTextNodeDelegate {
     }
 }
 
-extension CoctailViewController: ASCollectionDataSource, ASCollectionDelegate {
+extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
         coctails.count
@@ -143,13 +159,6 @@ extension CoctailViewController: ASCollectionDataSource, ASCollectionDelegate {
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
         presenter?.cellDidTapped(with: coctails[indexPath.row])
-        searchBar.textField.resignFirstResponder()
-        let detailVC = DetailViewController()
-        detailVC.coctail = coctails[indexPath.row]
-        detailVC.modalPresentationStyle = .overCurrentContext
-        detailVC.modalTransitionStyle = .coverVertical
-        present(detailVC, animated: true)
-        
     }
 }
 

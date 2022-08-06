@@ -7,7 +7,7 @@
 
 import AsyncDisplayKit
 
-class SearchField: ASDisplayNode {
+final class SearchField: ASDisplayNode {
     
     let textField: ASEditableTextNode
     private let background: ASDisplayNode
@@ -19,26 +19,17 @@ class SearchField: ASDisplayNode {
     
     override init() {
         textField = ASEditableTextNode()
-        let placeholder = NSMutableAttributedString(string: "Coctail name")
-        placeholder.addAttribute(
-            .foregroundColor,
-            value: UIColor(red: 0.769,
-                           green: 0.769,
-                           blue: 0.769,
-                           alpha: 1),
-            range: NSRange(0..<placeholder.length)
-        )
-        textField.attributedPlaceholderText = placeholder
         background = ASDisplayNode()
-        background.backgroundColor = .white
         
         super.init()
+        
         self.automaticallyManagesSubnodes = true
+        setTextField()
     }
     
     override func didLoad() {
         createShadow()
-        keyBoard()
+        setKeyboardNotifications()
         setGestureRecognizer()
     }
     
@@ -82,6 +73,7 @@ class SearchField: ASDisplayNode {
     }
     
     private func createShadow() {
+        background.backgroundColor = .white
         background.cornerRadius = 10
         background.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         background.shadowOpacity = 1
@@ -98,7 +90,7 @@ class SearchField: ASDisplayNode {
         textField.becomeFirstResponder()
     }
     
-    private func keyBoard() {
+    private func setKeyboardNotifications() {
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillShow),
             name: UIResponder.keyboardWillShowNotification, object: nil)

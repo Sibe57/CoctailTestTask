@@ -9,18 +9,19 @@
 /* Begin PBXBuildFile section */
 		0259206E289A7D85006B15DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0259206D289A7D85006B15DF /* AppDelegate.swift */; };
 		02592070289A7D85006B15DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0259206F289A7D85006B15DF /* SceneDelegate.swift */; };
-		02592072289A7D85006B15DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02592071289A7D85006B15DF /* ViewController.swift */; };
+		02592072289A7D85006B15DF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02592071289A7D85006B15DF /* SearchViewController.swift */; };
 		02592077289A7D86006B15DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02592076289A7D86006B15DF /* Assets.xcassets */; };
 		026887B8289B146D0081EF5C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887B7289B146D0081EF5C /* NetworkManager.swift */; };
-		026887BA289BC5970081EF5C /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887B9289BC5970081EF5C /* Entity.swift */; };
-		026887BC289BC6FC0081EF5C /* CoctailSearchIteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887BB289BC6FC0081EF5C /* CoctailSearchIteractor.swift */; };
-		026887BE289BC90B0081EF5C /* CoctailSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887BD289BC90B0081EF5C /* CoctailSearchPresenter.swift */; };
-		026887C1289BCC3F0081EF5C /* CoctailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887C0289BCC3F0081EF5C /* CoctailRouter.swift */; };
+		026887BA289BC5970081EF5C /* CoctailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887B9289BC5970081EF5C /* CoctailEntity.swift */; };
+		026887BC289BC6FC0081EF5C /* SearchIteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887BB289BC6FC0081EF5C /* SearchIteractor.swift */; };
+		026887BE289BC90B0081EF5C /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887BD289BC90B0081EF5C /* SearchPresenter.swift */; };
+		026887C1289BCC3F0081EF5C /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887C0289BCC3F0081EF5C /* SearchRouter.swift */; };
 		026887C4289BF79F0081EF5C /* CoctailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887C3289BF79F0081EF5C /* CoctailCell.swift */; };
 		026887C6289BF7AC0081EF5C /* CoctailCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887C5289BF7AC0081EF5C /* CoctailCollection.swift */; };
 		026887C8289C289E0081EF5C /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026887C7289C289E0081EF5C /* SearchField.swift */; };
 		0281938B289C529C001205CF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281938A289C529C001205CF /* DetailViewController.swift */; };
 		0281938D289D33B0001205CF /* BlurVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0281938C289D33B0001205CF /* BlurVisualEffectView.swift */; };
+		02819393289E7186001205CF /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02819392289E7186001205CF /* DetailPresenter.swift */; };
 		3BD6F73BC4199D0CBC112B27 /* Pods_CoctailTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559B15744138778A44AF40F0 /* Pods_CoctailTestTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,19 +29,20 @@
 		0259206A289A7D85006B15DF /* CoctailTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoctailTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0259206D289A7D85006B15DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0259206F289A7D85006B15DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		02592071289A7D85006B15DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		02592071289A7D85006B15DF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		02592076289A7D86006B15DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0259207B289A7D86006B15DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		026887B7289B146D0081EF5C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		026887B9289BC5970081EF5C /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		026887BB289BC6FC0081EF5C /* CoctailSearchIteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailSearchIteractor.swift; sourceTree = "<group>"; };
-		026887BD289BC90B0081EF5C /* CoctailSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailSearchPresenter.swift; sourceTree = "<group>"; };
-		026887C0289BCC3F0081EF5C /* CoctailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailRouter.swift; sourceTree = "<group>"; };
+		026887B9289BC5970081EF5C /* CoctailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailEntity.swift; sourceTree = "<group>"; };
+		026887BB289BC6FC0081EF5C /* SearchIteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIteractor.swift; sourceTree = "<group>"; };
+		026887BD289BC90B0081EF5C /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		026887C0289BCC3F0081EF5C /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		026887C3289BF79F0081EF5C /* CoctailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailCell.swift; sourceTree = "<group>"; };
 		026887C5289BF7AC0081EF5C /* CoctailCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailCollection.swift; sourceTree = "<group>"; };
 		026887C7289C289E0081EF5C /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		0281938A289C529C001205CF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0281938C289D33B0001205CF /* BlurVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurVisualEffectView.swift; sourceTree = "<group>"; };
+		02819392289E7186001205CF /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		559B15744138778A44AF40F0 /* Pods_CoctailTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoctailTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF8A962DC25B53C02D91A7B /* Pods-CoctailTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTestTask.debug.xcconfig"; path = "Target Support Files/Pods-CoctailTestTask/Pods-CoctailTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		AE4640D61E47F1E7D0139F8A /* Pods-CoctailTestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoctailTestTask.release.xcconfig"; path = "Target Support Files/Pods-CoctailTestTask/Pods-CoctailTestTask.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,29 +81,24 @@
 		0259206C289A7D85006B15DF /* CoctailTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				0281938F289E6EF9001205CF /* Modules */,
 				026887CB289C31640081EF5C /* App */,
-				026887C0289BCC3F0081EF5C /* CoctailRouter.swift */,
-				026887B9289BC5970081EF5C /* Entity.swift */,
-				026887BB289BC6FC0081EF5C /* CoctailSearchIteractor.swift */,
-				026887BD289BC90B0081EF5C /* CoctailSearchPresenter.swift */,
 				026887C9289C310D0081EF5C /* Services */,
-				026887C2289BF7860081EF5C /* Views */,
 				026887CA289C31210081EF5C /* Resourses */,
 			);
 			path = CoctailTestTask;
 			sourceTree = "<group>";
 		};
-		026887C2289BF7860081EF5C /* Views */ = {
+		026887C2289BF7860081EF5C /* SearchViews */ = {
 			isa = PBXGroup;
 			children = (
-				02592071289A7D85006B15DF /* ViewController.swift */,
+				02592071289A7D85006B15DF /* SearchViewController.swift */,
 				0281938C289D33B0001205CF /* BlurVisualEffectView.swift */,
 				026887C7289C289E0081EF5C /* SearchField.swift */,
-				0281938A289C529C001205CF /* DetailViewController.swift */,
 				026887C3289BF79F0081EF5C /* CoctailCell.swift */,
 				026887C5289BF7AC0081EF5C /* CoctailCollection.swift */,
 			);
-			path = Views;
+			path = SearchViews;
 			sourceTree = "<group>";
 		};
 		026887C9289C310D0081EF5C /* Services */ = {
@@ -128,6 +125,36 @@
 				0259207B289A7D86006B15DF /* Info.plist */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		0281938F289E6EF9001205CF /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				02819391289E6F55001205CF /* DetailModule */,
+				02819390289E6F03001205CF /* SearchModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		02819390289E6F03001205CF /* SearchModule */ = {
+			isa = PBXGroup;
+			children = (
+				026887BD289BC90B0081EF5C /* SearchPresenter.swift */,
+				026887BB289BC6FC0081EF5C /* SearchIteractor.swift */,
+				026887B9289BC5970081EF5C /* CoctailEntity.swift */,
+				026887C0289BCC3F0081EF5C /* SearchRouter.swift */,
+				026887C2289BF7860081EF5C /* SearchViews */,
+			);
+			path = SearchModule;
+			sourceTree = "<group>";
+		};
+		02819391289E6F55001205CF /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				0281938A289C529C001205CF /* DetailViewController.swift */,
+				02819392289E7186001205CF /* DetailPresenter.swift */,
+			);
+			path = DetailModule;
 			sourceTree = "<group>";
 		};
 		A206CCF1D9815D3E6A46EEDA /* Pods */ = {
@@ -262,16 +289,17 @@
 			files = (
 				026887B8289B146D0081EF5C /* NetworkManager.swift in Sources */,
 				026887C4289BF79F0081EF5C /* CoctailCell.swift in Sources */,
-				026887BC289BC6FC0081EF5C /* CoctailSearchIteractor.swift in Sources */,
+				026887BC289BC6FC0081EF5C /* SearchIteractor.swift in Sources */,
 				0281938B289C529C001205CF /* DetailViewController.swift in Sources */,
-				026887BA289BC5970081EF5C /* Entity.swift in Sources */,
+				026887BA289BC5970081EF5C /* CoctailEntity.swift in Sources */,
+				02819393289E7186001205CF /* DetailPresenter.swift in Sources */,
 				026887C8289C289E0081EF5C /* SearchField.swift in Sources */,
-				02592072289A7D85006B15DF /* ViewController.swift in Sources */,
+				02592072289A7D85006B15DF /* SearchViewController.swift in Sources */,
 				0259206E289A7D85006B15DF /* AppDelegate.swift in Sources */,
-				026887BE289BC90B0081EF5C /* CoctailSearchPresenter.swift in Sources */,
+				026887BE289BC90B0081EF5C /* SearchPresenter.swift in Sources */,
 				0281938D289D33B0001205CF /* BlurVisualEffectView.swift in Sources */,
 				026887C6289BF7AC0081EF5C /* CoctailCollection.swift in Sources */,
-				026887C1289BCC3F0081EF5C /* CoctailRouter.swift in Sources */,
+				026887C1289BCC3F0081EF5C /* SearchRouter.swift in Sources */,
 				02592070289A7D85006B15DF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

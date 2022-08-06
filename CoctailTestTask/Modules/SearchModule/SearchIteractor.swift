@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol AnyInteractor {
-    var presenter: AnyPresenter? { get set }
+protocol SearchInteractor {
+    var presenter: SearchPresenterProtocol? { get set }
     func getCoctails(searchString: String)
 }
 
-class CoctailSearchIteractor: AnyInteractor {
+class SearchIteractor: SearchInteractor {
     
-    var presenter: AnyPresenter?
+    var presenter: SearchPresenterProtocol?
     
     func getCoctails(searchString: String) {
         NetwotkManager.fetchData(searchString: searchString) {

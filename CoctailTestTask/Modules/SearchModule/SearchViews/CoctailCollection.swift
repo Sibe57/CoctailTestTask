@@ -7,25 +7,29 @@
 
 import AsyncDisplayKit
 
-class CoctailCollectionNode: ASCollectionNode {
+final class CoctailCollectionNode: ASCollectionNode {
     
     init() {
         let layout = LeftAlignedCollectionViewFlowLayout()
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 10
-        
         super.init(frame: .zero, collectionViewLayout: layout, layoutFacilitator: nil)
-        
-        self.style.width = ASDimension(unit: .fraction, value: 1)
-        self.style.height = ASDimension(unit: .points, value: 264)
-        self.view.showsVerticalScrollIndicator = false
+        setupCollectionSize()
+    }
+    
+    private func setupCollectionSize() {
+        style.width = ASDimension(unit: .fraction, value: 1)
+        style.height = ASDimension(unit: .points, value: 264)
+        view.showsVerticalScrollIndicator = false
     }
 }
 
-class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+
+final class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attributes = super.layoutAttributesForElements(in: rect)
+        
+        minimumLineSpacing = 8
+        minimumInteritemSpacing = 10
 
         var leftMargin = sectionInset.left
         var maxY: CGFloat = -1.0

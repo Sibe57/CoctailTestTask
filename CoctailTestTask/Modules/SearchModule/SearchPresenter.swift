@@ -7,20 +7,21 @@
 
 import Foundation
 
-protocol AnyPresenter {
-    var router: SearchRouter? {get set}
-    var interactor: AnyInteractor? { get set }
-    var view: SearchView? { get set }
+protocol SearchPresenterProtocol {
+    var router: SearchRouterProtocol? {get set}
+    var interactor: SearchInteractor? { get set }
+    var view: SearchViewProtocol? { get set }
     func textFieldDidChange(text: String?)
     func interactorDoneWithCoctails(coctails: [Coctail]?)
     func cellDidTapped(with coctail: Coctail)
+    func showSearchView()
 }
 
-class CoctailSearchPresenter: AnyPresenter {
+class SearchPresenter: SearchPresenterProtocol {
     
-    var router: SearchRouter?
-    var interactor: AnyInteractor?
-    var view: SearchView?
+    var router: SearchRouterProtocol?
+    var interactor: SearchInteractor?
+    var view: SearchViewProtocol?
     
     var searchTimer: Timer?
     var searchString: String!
@@ -51,6 +52,7 @@ class CoctailSearchPresenter: AnyPresenter {
     }
     
     func cellDidTapped(with coctail: Coctail) {
+        view?.selfBlur()
         router?.toDetailScreen(about: coctail)
     }
     
@@ -59,7 +61,11 @@ class CoctailSearchPresenter: AnyPresenter {
             view?.update(with: coctails)
         } else {
             view?.update(with: "data fetching error")
-            view?.changeAtrivitiIndicatorState(toStartAnimating: false)
         }
+        view?.changeAtrivitiIndicatorState(toStartAnimating: false)
+    }
+    
+    func showSearchView() {
+        view?.selfUnblur()
     }
 }

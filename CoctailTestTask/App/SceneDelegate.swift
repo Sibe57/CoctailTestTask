@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let router = CoctailRouter.start()
+        let router = SearchRouter()
+        router.assemblySearchModule()
         let initialVC = router.entry
         
         let window = UIWindow(windowScene: windowScene)
