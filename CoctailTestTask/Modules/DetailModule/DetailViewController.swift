@@ -35,8 +35,17 @@ final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewP
     override func viewDidLoad() {
         setupApperance()
         setTextLabel()
-        
         imageNode.url = detailPresenter?.getCoctailImageURL()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touches.forEach {
+            let location = $0.location(in: view)
+            if location.y < imageNode.frame.minY {
+                detailPresenter?.viewWillDissmis()
+                dismiss(animated: true)
+            }
+        }
     }
     
     private func setupLayout() {
@@ -54,7 +63,8 @@ final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewP
     }
     
     private func setupApperance() {
-        titleNode.textContainerInset = UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 20)
+        titleNode.textContainerInset = UIEdgeInsets(top: 20, left: 16,
+                                                    bottom: 20, right: 20)
         titleNode.backgroundColor = .white
         imageNode.backgroundColor = #colorLiteral(red: 0.8110429645, green: 0.8110429049, blue: 0.8110428452, alpha: 1)
         imageNode.cornerRadius = 20
@@ -71,11 +81,5 @@ final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewP
             range: NSRange(0..<text.length)
         )
         titleNode.attributedText = text
-    }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        detailPresenter?.viewWillDissmis()
-        dismiss(animated: true)
     }
 }

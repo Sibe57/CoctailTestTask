@@ -16,7 +16,7 @@ protocol SearchRouterProtocol {
     func returnToSearchScreen()
 }
 
-class SearchRouter: SearchRouterProtocol {
+final class SearchRouter: SearchRouterProtocol {
     
     var entry: EntryPoint?
     var transitionHandler: ASDKViewController<ASDisplayNode>?

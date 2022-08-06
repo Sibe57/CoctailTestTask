@@ -8,16 +8,18 @@
 import Foundation
 
 protocol SearchPresenterProtocol {
+    
     var router: SearchRouterProtocol? {get set}
     var interactor: SearchInteractor? { get set }
     var view: SearchViewProtocol? { get set }
+    
     func textFieldDidChange(text: String?)
     func interactorDoneWithCoctails(coctails: [Coctail]?)
     func cellDidTapped(with coctail: Coctail)
     func showSearchView()
 }
 
-class SearchPresenter: SearchPresenterProtocol {
+final class SearchPresenter: SearchPresenterProtocol {
     
     var router: SearchRouterProtocol?
     var interactor: SearchInteractor?

@@ -12,7 +12,7 @@ protocol SearchInteractor {
     func getCoctails(searchString: String)
 }
 
-class SearchIteractor: SearchInteractor {
+final class SearchIteractor: SearchInteractor {
     
     var presenter: SearchPresenterProtocol?
     
