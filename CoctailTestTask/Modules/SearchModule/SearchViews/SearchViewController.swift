@@ -67,12 +67,13 @@ final class SearchViewController: ASDKViewController<ASDisplayNode> {
     private func setupLayout() {
         node.layoutSpecBlock = {[unowned self] _,_ in
             
-            activityIndicatorNode.backgroundColor = .red
+            let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets
+            
             activityIndicatorNode.view.addSubview(activityIndicator)
             node.backgroundColor = .white
             
             activityIndicatorNode.style.layoutPosition = CGPoint(
-                x: view.frame.midX - 10, y: 48
+                x: view.frame.midX - 10, y: 48 + (safeAreaInsets?.top ?? 0)
             )
             activityIndicatorNode.style.preferredSize = CGSize(
                 width: 0, height: 0
@@ -88,13 +89,11 @@ final class SearchViewController: ASDKViewController<ASDisplayNode> {
             )
         
             let insets = ASInsetLayoutSpec(
-                insets: UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16),
+                insets: UIEdgeInsets(top: 20 + (safeAreaInsets?.top ?? 0),
+                                     left: 16, bottom: 0, right: 16),
                 child: coctailsCollectionPos)
             
-            let perfectSpacing = (view.frame.height -
-                                  view.safeAreaInsets.bottom -
-                                  view.safeAreaInsets.top -
-                                  264) * 186 / 313
+            let perfectSpacing = (view.frame.height - 264) * 186 / 313
             
             return ASStackLayoutSpec(
                 direction: .vertical,
@@ -146,7 +145,8 @@ extension SearchViewController: ASEditableTextNodeDelegate {
 extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        coctails.count
+        //print("SafeArea \(UIApplication.shared.windows.first.safeAreaInsets)")
+        return coctails.count
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
@@ -158,6 +158,7 @@ extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        searchBar.textField.resignFirstResponder()
         presenter?.cellDidTapped(with: coctails[indexPath.row])
     }
 }
