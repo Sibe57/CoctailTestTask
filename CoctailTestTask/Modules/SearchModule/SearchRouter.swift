@@ -18,10 +18,28 @@ final class SearchRouter: SearchRouterProtocol {
     var detailView: DetailViewProtocol?
     var detailPresenter: DetailPresenterProtocol?
     
+    // MARK: Trasitions
     
-    //We can divite this func to Assembly class but this app quite small
-    func assemblySearchModule() {
+    func toDetailScreen(about coctail: Coctail) {
+        assemblyDetailModule()
+        guard let detailVC = detailView as? DetailViewController else { return }
         
+        detailPresenter?.coctailToPresent = coctail
+    
+        detailVC.modalPresentationStyle = .overCurrentContext
+        detailVC.modalTransitionStyle = .coverVertical
+        
+        transitionHandler?.present(detailVC, animated: true)
+    }
+    
+    func returnToSearchScreen() {
+        searchPresenter?.showSearchView()
+    }
+    
+    
+// MARK: Modyle Assembler
+    
+    func assemblySearchModule() {
         searchPresenter = SearchPresenter()
         
         var searchView: SearchViewProtocol = SearchViewController()
@@ -43,22 +61,6 @@ final class SearchRouter: SearchRouterProtocol {
         detailView?.detailPresenter = detailPresenter
         detailPresenter?.view = detailView
         detailPresenter?.router = self
-    }
-    
-    func toDetailScreen(about coctail: Coctail) {
-        assemblyDetailModule()
-        guard let detailVC = detailView as? DetailViewController else { return }
-        
-        detailPresenter?.coctailToPresent = coctail
-    
-        detailVC.modalPresentationStyle = .overCurrentContext
-        detailVC.modalTransitionStyle = .coverVertical
-        
-        transitionHandler?.present(detailVC, animated: true)
-    }
-    
-    func returnToSearchScreen() {
-        searchPresenter?.showSearchView()
     }
 }
 
