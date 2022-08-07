@@ -11,7 +11,7 @@ import Foundation
 protocol SearchViewProtocol {
     var presenter: SearchPresenterProtocol? { get set }
     func update()
-    func update(with error: String)
+    func update(with error: DataFetchError)
     func changeAtrivityIndicatorState(toStartAnimating: Bool)
     func selfBlur()
     func selfUnblur()

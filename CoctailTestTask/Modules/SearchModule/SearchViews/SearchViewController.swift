@@ -119,11 +119,11 @@ extension SearchViewController: SearchViewProtocol {
     func update(with error: DataFetchError) {
         switch error {
         case .emptyTextField:
-            print("Empty text field")
+            break
         case .fetchDataError:
-            print("Data fetching error")
             showAllert()
         }
+        print(error.rawValue)
         coctailsNode.isHidden = true
     }
     
