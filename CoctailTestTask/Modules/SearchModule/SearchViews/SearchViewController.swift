@@ -98,6 +98,8 @@ final class SearchViewController: ASDKViewController<ASDisplayNode> {
     }
 }
 
+// MARK: SearchViewProtocol
+
 extension SearchViewController: SearchViewProtocol {
     
     func update(with coctails: [Coctail]) {
@@ -126,7 +128,10 @@ extension SearchViewController: SearchViewProtocol {
     }
 }
 
+// MARK: TextFieldDelagate
+
 extension SearchViewController: ASEditableTextNodeDelegate {
+    
     func editableTextNodeDidUpdateText(_ editableTextNode: ASEditableTextNode){
         presenter?.textFieldDidChange(
             text: searchBar.textField.attributedText?.string
@@ -134,14 +139,16 @@ extension SearchViewController: ASEditableTextNodeDelegate {
     }
 }
 
+// MARK: CollectionViewDelagate
+
 extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        //print("SafeArea \(UIApplication.shared.windows.first.safeAreaInsets)")
-        return coctails.count
+        coctails.count
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
+        
         guard coctails.count > indexPath.row else { return ASCellNode() }
         let coctail = coctails[indexPath.row]
         let cell =  CoctailCell(coctail: coctail)
@@ -150,6 +157,7 @@ extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
+        
         searchBar.textField.resignFirstResponder()
         presenter?.cellDidTapped(with: coctails[indexPath.row])
     }
