@@ -12,7 +12,7 @@ protocol SearchViewProtocol {
     var presenter: SearchPresenterProtocol? { get set }
     func update(with coctails: [Coctail])
     func update(with error: String)
-    func changeAtrivitiIndicatorState(toStartAnimating: Bool)
+    func changeAtrivityIndicatorState(toStartAnimating: Bool)
     func selfBlur()
     func selfUnblur()
 }

@@ -62,7 +62,7 @@ final class SearchField: ASDisplayNode {
         if keyboardIsShowing {
             view.frame.origin.y = supernode!.frame.maxY - keyboardHeight - view.frame.height
         } else {
-            view.frame.origin.y = initialFrame?.minY ?? 48
+            view.frame.origin.y = initialFrame?.minY ?? view.frame.origin.y
         }
         background.view.transform = transform
     }

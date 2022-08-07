@@ -119,7 +119,7 @@ extension SearchViewController: SearchViewProtocol {
         blurredView.removeFromSuperview()
     }
     
-    func changeAtrivitiIndicatorState(toStartAnimating: Bool) {
+    func changeAtrivityIndicatorState(toStartAnimating: Bool) {
         toStartAnimating
         ? activityIndicator.startAnimating()
         : activityIndicator.stopAnimating()

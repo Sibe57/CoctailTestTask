@@ -26,7 +26,7 @@ final class SearchPresenter: SearchPresenterProtocol {
         
         guard let text = text else {
             view?.update(with: "EmptyTextField")
-            view?.changeAtrivitiIndicatorState(toStartAnimating: false)
+            view?.changeAtrivityIndicatorState(toStartAnimating: false)
             return
         }
         
@@ -39,7 +39,7 @@ final class SearchPresenter: SearchPresenterProtocol {
     }
     @objc func searchText() {
         interactor?.getCoctails(searchString: searchString)
-        view?.changeAtrivitiIndicatorState(toStartAnimating: true)
+        view?.changeAtrivityIndicatorState(toStartAnimating: true)
     }
     
     func cellDidTapped(with coctail: Coctail) {
@@ -53,7 +53,7 @@ final class SearchPresenter: SearchPresenterProtocol {
         } else {
             view?.update(with: "data fetching error")
         }
-        view?.changeAtrivitiIndicatorState(toStartAnimating: false)
+        view?.changeAtrivityIndicatorState(toStartAnimating: false)
     }
     
     func showSearchView() {
