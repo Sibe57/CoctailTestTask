@@ -94,6 +94,17 @@ final class SearchViewController: ASDKViewController<ASDisplayNode> {
             )
         }
     }
+    
+    func showAllert() {
+        let allert = UIAlertController(
+            title: "No drink there 😔",
+            message: "Sorry we can't search any drink, try another search",
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(title: "OK", style: .default)
+        allert.addAction(action)
+        self.present(allert, animated: true)
+    }
 }
 
 // MARK: SearchViewProtocol
@@ -105,9 +116,15 @@ extension SearchViewController: SearchViewProtocol {
         coctailsNode.isHidden = false
     }
     
-    func update(with error: String) {
+    func update(with error: DataFetchError) {
+        switch error {
+        case .emptyTextField:
+            print("Empty text field")
+        case .fetchDataError:
+            print("Data fetching error")
+            showAllert()
+        }
         coctailsNode.isHidden = true
-        print(error)
     }
     
     func selfBlur() {
