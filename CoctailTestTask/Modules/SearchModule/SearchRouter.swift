@@ -18,7 +18,7 @@ final class SearchRouter: SearchRouterProtocol {
     var detailView: DetailViewProtocol?
     var detailPresenter: DetailPresenterProtocol?
     
-    // MARK: Trasitions
+// MARK: Trasitions
     
     func toDetailScreen(about coctail: Coctail) {
         assemblyDetailModule()

@@ -16,6 +16,8 @@ protocol SearchPresenterProtocol {
     
     func textFieldDidChange(text: String?)
     func interactorDoneWithCoctails(coctails: [Coctail]?)
-    func cellDidTapped(with coctail: Coctail)
+    func cellDidTapped(with index: Int)
     func showSearchView()
+    func getCoctail(at index: Int) -> Coctail?
+    func getCoctailsCount() -> Int
 }
