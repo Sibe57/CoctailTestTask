@@ -31,6 +31,7 @@ final class DetailPresenter: DetailPresenterProtocol {
     }
     
     func viewWillDissmis() {
+        view = nil
         router?.returnToSearchScreen()
     }
     

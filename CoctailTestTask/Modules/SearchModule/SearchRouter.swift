@@ -33,7 +33,9 @@ final class SearchRouter: SearchRouterProtocol {
     }
     
     func returnToSearchScreen() {
-        searchPresenter?.showSearchView()
+        detailPresenter = nil
+        detailView = nil
+        searchPresenter?.returnToSearchView()
     }
     
     

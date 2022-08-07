@@ -12,12 +12,10 @@ final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewP
     
     var detailPresenter: DetailPresenterProtocol?
     
-    private let imageNode: ASNetworkImageNode
-    private let titleNode: ASTextNode
+    private let imageNode = ASNetworkImageNode()
+    private let titleNode = ASTextNode()
     
     override init() {
-        titleNode = ASTextNode()
-        imageNode = ASNetworkImageNode()
         
         super.init(node: ASDisplayNode())
         node.automaticallyManagesSubnodes = true
