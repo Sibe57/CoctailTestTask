@@ -7,22 +7,11 @@
 
 import Foundation
 
-protocol SearchPresenterProtocol {
-    
-    var router: SearchRouterProtocol? {get set}
-    var interactor: SearchInteractor? { get set }
-    var view: SearchViewProtocol? { get set }
-    
-    func textFieldDidChange(text: String?)
-    func interactorDoneWithCoctails(coctails: [Coctail]?)
-    func cellDidTapped(with coctail: Coctail)
-    func showSearchView()
-}
 
 final class SearchPresenter: SearchPresenterProtocol {
     
     var router: SearchRouterProtocol?
-    var interactor: SearchInteractor?
+    var interactor: SearchInteractorProtocol?
     var view: SearchViewProtocol?
     
     var searchTimer: Timer?

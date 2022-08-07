@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02464074289F9DA9008AADE3 /* DetailViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464073289F9DA9008AADE3 /* DetailViewProtocol.swift */; };
+		02464076289F9DDE008AADE3 /* DetailPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464075289F9DDE008AADE3 /* DetailPresenterProtocol.swift */; };
+		02464078289F9E28008AADE3 /* SearchPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464077289F9E28008AADE3 /* SearchPresenterProtocol.swift */; };
+		0246407A289F9E95008AADE3 /* SearchInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02464079289F9E95008AADE3 /* SearchInteractorProtocol.swift */; };
+		0246407D289F9F67008AADE3 /* SearchRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246407C289F9F67008AADE3 /* SearchRouterProtocol.swift */; };
+		0246407F289F9FCD008AADE3 /* SearchViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0246407E289F9FCD008AADE3 /* SearchViewProtocol.swift */; };
 		0259206E289A7D85006B15DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0259206D289A7D85006B15DF /* AppDelegate.swift */; };
 		02592070289A7D85006B15DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0259206F289A7D85006B15DF /* SceneDelegate.swift */; };
 		02592072289A7D85006B15DF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02592071289A7D85006B15DF /* SearchViewController.swift */; };
@@ -26,6 +32,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02464073289F9DA9008AADE3 /* DetailViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewProtocol.swift; sourceTree = "<group>"; };
+		02464075289F9DDE008AADE3 /* DetailPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenterProtocol.swift; sourceTree = "<group>"; };
+		02464077289F9E28008AADE3 /* SearchPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenterProtocol.swift; sourceTree = "<group>"; };
+		02464079289F9E95008AADE3 /* SearchInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractorProtocol.swift; sourceTree = "<group>"; };
+		0246407C289F9F67008AADE3 /* SearchRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouterProtocol.swift; sourceTree = "<group>"; };
+		0246407E289F9FCD008AADE3 /* SearchViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewProtocol.swift; sourceTree = "<group>"; };
 		0259206A289A7D85006B15DF /* CoctailTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoctailTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0259206D289A7D85006B15DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0259206F289A7D85006B15DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +72,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0246407B289F9EBE008AADE3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				026887B9289BC5970081EF5C /* CoctailEntity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		02592061289A7D85006B15DF = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +103,7 @@
 			children = (
 				0281938F289E6EF9001205CF /* Modules */,
 				026887CB289C31640081EF5C /* App */,
+				0246407B289F9EBE008AADE3 /* Entities */,
 				026887C9289C310D0081EF5C /* Services */,
 				026887CA289C31210081EF5C /* Resourses */,
 			);
@@ -92,6 +113,7 @@
 		026887C2289BF7860081EF5C /* SearchViews */ = {
 			isa = PBXGroup;
 			children = (
+				0246407E289F9FCD008AADE3 /* SearchViewProtocol.swift */,
 				02592071289A7D85006B15DF /* SearchViewController.swift */,
 				0281938C289D33B0001205CF /* BlurVisualEffectView.swift */,
 				026887C7289C289E0081EF5C /* SearchField.swift */,
@@ -139,9 +161,11 @@
 		02819390289E6F03001205CF /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
+				02464077289F9E28008AADE3 /* SearchPresenterProtocol.swift */,
 				026887BD289BC90B0081EF5C /* SearchPresenter.swift */,
+				02464079289F9E95008AADE3 /* SearchInteractorProtocol.swift */,
 				026887BB289BC6FC0081EF5C /* SearchIteractor.swift */,
-				026887B9289BC5970081EF5C /* CoctailEntity.swift */,
+				0246407C289F9F67008AADE3 /* SearchRouterProtocol.swift */,
 				026887C0289BCC3F0081EF5C /* SearchRouter.swift */,
 				026887C2289BF7860081EF5C /* SearchViews */,
 			);
@@ -151,7 +175,9 @@
 		02819391289E6F55001205CF /* DetailModule */ = {
 			isa = PBXGroup;
 			children = (
+				02464073289F9DA9008AADE3 /* DetailViewProtocol.swift */,
 				0281938A289C529C001205CF /* DetailViewController.swift */,
+				02464075289F9DDE008AADE3 /* DetailPresenterProtocol.swift */,
 				02819392289E7186001205CF /* DetailPresenter.swift */,
 			);
 			path = DetailModule;
@@ -291,16 +317,22 @@
 				026887C4289BF79F0081EF5C /* CoctailCell.swift in Sources */,
 				026887BC289BC6FC0081EF5C /* SearchIteractor.swift in Sources */,
 				0281938B289C529C001205CF /* DetailViewController.swift in Sources */,
+				02464074289F9DA9008AADE3 /* DetailViewProtocol.swift in Sources */,
+				02464076289F9DDE008AADE3 /* DetailPresenterProtocol.swift in Sources */,
+				0246407A289F9E95008AADE3 /* SearchInteractorProtocol.swift in Sources */,
 				026887BA289BC5970081EF5C /* CoctailEntity.swift in Sources */,
 				02819393289E7186001205CF /* DetailPresenter.swift in Sources */,
 				026887C8289C289E0081EF5C /* SearchField.swift in Sources */,
+				0246407F289F9FCD008AADE3 /* SearchViewProtocol.swift in Sources */,
 				02592072289A7D85006B15DF /* SearchViewController.swift in Sources */,
+				0246407D289F9F67008AADE3 /* SearchRouterProtocol.swift in Sources */,
 				0259206E289A7D85006B15DF /* AppDelegate.swift in Sources */,
 				026887BE289BC90B0081EF5C /* SearchPresenter.swift in Sources */,
 				0281938D289D33B0001205CF /* BlurVisualEffectView.swift in Sources */,
 				026887C6289BF7AC0081EF5C /* CoctailCollection.swift in Sources */,
 				026887C1289BCC3F0081EF5C /* SearchRouter.swift in Sources */,
 				02592070289A7D85006B15DF /* SceneDelegate.swift in Sources */,
+				02464078289F9E28008AADE3 /* SearchPresenterProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,12 +9,6 @@ import AsyncDisplayKit
 
 typealias EntryPoint = SearchViewProtocol & ASDKViewController<ASDisplayNode>
 
-protocol SearchRouterProtocol {
-    var entry: EntryPoint? { get }
-    func assemblySearchModule()
-    func toDetailScreen(about coctail: Coctail)
-    func returnToSearchScreen()
-}
 
 final class SearchRouter: SearchRouterProtocol {
     
@@ -31,7 +25,7 @@ final class SearchRouter: SearchRouterProtocol {
         searchPresenter = SearchPresenter()
         
         var searchView: SearchViewProtocol = SearchViewController()
-        var searchIteractor: SearchInteractor = SearchIteractor()
+        var searchIteractor: SearchInteractorProtocol = SearchIteractor()
         
         transitionHandler = searchView as? SearchViewController
         self.entry = searchView as? EntryPoint
@@ -64,7 +58,6 @@ final class SearchRouter: SearchRouterProtocol {
     }
     
     func returnToSearchScreen() {
-    
         searchPresenter?.showSearchView()
     }
 }

@@ -7,12 +7,8 @@
 
 import Foundation
 
-protocol SearchInteractor {
-    var presenter: SearchPresenterProtocol? { get set }
-    func getCoctails(searchString: String)
-}
 
-final class SearchIteractor: SearchInteractor {
+final class SearchIteractor: SearchInteractorProtocol {
     
     var presenter: SearchPresenterProtocol?
     

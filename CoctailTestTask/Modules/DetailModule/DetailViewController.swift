@@ -7,9 +7,6 @@
 
 import AsyncDisplayKit
 
-protocol DetailViewProtocol {
-    var detailPresenter: DetailPresenterProtocol? { get set }
-}
 
 final class DetailViewController: ASDKViewController<ASDisplayNode>, DetailViewProtocol {
     
