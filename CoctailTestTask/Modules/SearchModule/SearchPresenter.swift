@@ -9,7 +9,7 @@ import Foundation
 
 
 final class SearchPresenter: SearchPresenterProtocol {
-    
+   
     var router: SearchRouterProtocol?
     var interactor: SearchInteractorProtocol?
     var view: SearchViewProtocol?
@@ -29,7 +29,7 @@ final class SearchPresenter: SearchPresenterProtocol {
         }
         
         guard let text = text else {
-            view?.update(with: "EmptyTextField")
+            view?.update(with: .emptyTextField)
             view?.changeAtrivityIndicatorState(toStartAnimating: false)
             return
         }
@@ -47,11 +47,11 @@ final class SearchPresenter: SearchPresenterProtocol {
     }
     
     func interactorDoneWithCoctails(coctails: [Coctail]?) {
-        if let coctails = coctails {
+        if let coctails = coctails, !coctails.isEmpty {
             self.coctails = coctails
             view?.update()
         } else {
-            view?.update(with: "data fetching error")
+            view?.update(with: .fetchDataError)
         }
         view?.changeAtrivityIndicatorState(toStartAnimating: false)
     }
@@ -74,7 +74,7 @@ final class SearchPresenter: SearchPresenterProtocol {
         router?.toDetailScreen(about: coctails[index])
     }
     
-    func showSearchView() {
+    func returnToSearchView() {
         view?.selfUnblur()
     }
 }
