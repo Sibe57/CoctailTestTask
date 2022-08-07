@@ -14,8 +14,12 @@ final class SearchPresenter: SearchPresenterProtocol {
     var interactor: SearchInteractorProtocol?
     var view: SearchViewProtocol?
     
+    var coctails: [Coctail] = []
+    
     var searchTimer: Timer?
     var searchString: String!
+    
+    // MARK: Network reqests
     
     func textFieldDidChange(text: String?) {
         
@@ -42,18 +46,32 @@ final class SearchPresenter: SearchPresenterProtocol {
         view?.changeAtrivityIndicatorState(toStartAnimating: true)
     }
     
-    func cellDidTapped(with coctail: Coctail) {
-        view?.selfBlur()
-        router?.toDetailScreen(about: coctail)
-    }
-    
     func interactorDoneWithCoctails(coctails: [Coctail]?) {
         if let coctails = coctails {
-            view?.update(with: coctails)
+            self.coctails = coctails
+            view?.update()
         } else {
             view?.update(with: "data fetching error")
         }
         view?.changeAtrivityIndicatorState(toStartAnimating: false)
+    }
+    
+    // MARK: CollectionViewSetup
+    
+    func getCoctail(at index: Int) -> Coctail? {
+        guard coctails.count > index else { return nil }
+        return coctails[index]
+    }
+    
+    func getCoctailsCount() -> Int {
+        coctails.count
+    }
+    
+    // MARK: Transitions
+    
+    func cellDidTapped(with index: Int) {
+        view?.selfBlur()
+        router?.toDetailScreen(about: coctails[index])
     }
     
     func showSearchView() {

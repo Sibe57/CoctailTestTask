@@ -12,8 +12,6 @@ final class SearchViewController: ASDKViewController<ASDisplayNode> {
     
     var presenter: SearchPresenterProtocol?
     
-    private var coctails: [Coctail] = []
-    
     private let searchBar: SearchField
     private let coctailsNode: CoctailCollectionNode
     
@@ -102,8 +100,7 @@ final class SearchViewController: ASDKViewController<ASDisplayNode> {
 
 extension SearchViewController: SearchViewProtocol {
     
-    func update(with coctails: [Coctail]) {
-        self.coctails = coctails
+    func update() {
         coctailsNode.reloadData()
         coctailsNode.isHidden = false
     }
@@ -144,22 +141,23 @@ extension SearchViewController: ASEditableTextNodeDelegate {
 extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
     
     func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        coctails.count
+        presenter?.getCoctailsCount() ?? 0
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, nodeForItemAt indexPath: IndexPath) -> ASCellNode {
         
-        guard coctails.count > indexPath.row else { return ASCellNode() }
-        let coctail = coctails[indexPath.row]
+        guard let coctail = presenter?.getCoctail(at: indexPath.row)
+        else {
+            return ASCellNode()
+        }
         let cell =  CoctailCell(coctail: coctail)
         cell.cornerRadius = 8
         return cell
     }
     
     func collectionNode(_ collectionNode: ASCollectionNode, didSelectItemAt indexPath: IndexPath) {
-        
         searchBar.textField.resignFirstResponder()
-        presenter?.cellDidTapped(with: coctails[indexPath.row])
+        presenter?.cellDidTapped(with: indexPath.row)
     }
 }
 
