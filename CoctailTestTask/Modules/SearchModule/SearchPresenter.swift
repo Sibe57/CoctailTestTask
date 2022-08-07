@@ -14,9 +14,10 @@ final class SearchPresenter: SearchPresenterProtocol {
     var interactor: SearchInteractorProtocol?
     var view: SearchViewProtocol?
     
+    var coctails: [Coctail] = []
+    
     var searchTimer: Timer?
     var searchString: String!
-    var coctails: [Coctail] = []
     
     // MARK: Network reqests
     

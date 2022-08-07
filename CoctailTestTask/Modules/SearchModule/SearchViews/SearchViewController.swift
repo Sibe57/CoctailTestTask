@@ -12,8 +12,6 @@ final class SearchViewController: ASDKViewController<ASDisplayNode> {
     
     var presenter: SearchPresenterProtocol?
     
-   // private var coctails: [Coctail] = []
-    
     private let searchBar: SearchField
     private let coctailsNode: CoctailCollectionNode
     
