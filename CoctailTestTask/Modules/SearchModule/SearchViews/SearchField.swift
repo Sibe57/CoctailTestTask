@@ -15,7 +15,7 @@ final class SearchField: ASDisplayNode {
     private var initialFrame: CGRect?
     
     private var keyboardIsShowing: Bool = false
-    private var heightOfKeyboard: CGFloat = 0
+    private var keyboardHeight: CGFloat = 0
     
     override init() {
         textField = ASEditableTextNode()
@@ -58,6 +58,12 @@ final class SearchField: ASDisplayNode {
         background.cornerRadius = keyboardIsShowing ? 0 : 8
         let scaleXfactor = 1 + (32 / (supernode!.frame.width - 32))
         let transform = CGAffineTransform(scaleX: keyboardIsShowing ? scaleXfactor : 1, y: 1)
+        
+        if keyboardIsShowing {
+            view.frame.origin.y = supernode!.frame.maxY - keyboardHeight - view.frame.height
+        } else {
+            view.frame.origin.y = initialFrame?.minY ?? 48
+        }
         background.view.transform = transform
     }
     
@@ -82,7 +88,11 @@ final class SearchField: ASDisplayNode {
     }
     
     private func setGestureRecognizer() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(backgroundDidTapped))
+        let gesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(backgroundDidTapped)
+        )
+        
         background.view.addGestureRecognizer(gesture)
     }
     
@@ -108,17 +118,13 @@ final class SearchField: ASDisplayNode {
         guard let keyboardFrame: NSValue =
                 notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
                 as? NSValue else { return }
-        let keyboardHeight = keyboardFrame.cgRectValue.height
+        keyboardHeight = keyboardFrame.cgRectValue.height
         
-        view.frame.origin.y = supernode!.frame.maxY - keyboardHeight - view.frame.height
         transitionLayout(withAnimation: true, shouldMeasureAsync: false)
     }
     
     @objc func keyboardWillHide() {
         keyboardIsShowing = false
-        guard let initialFrame = initialFrame else { return }
-        
-        view.frame = initialFrame
         transitionLayout(withAnimation: true, shouldMeasureAsync: false)
     }
 }
